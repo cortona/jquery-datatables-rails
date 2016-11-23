@@ -463,6 +463,7 @@ $.extend( Buttons.prototype, {
 	_buildButtons: function ( buttons, container, collectionCounter )
 	{
 		var dt = this.s.dt;
+		var buttonCounter = 0;
 
 		if ( ! container ) {
 			container = this.dom.container;
@@ -517,7 +518,7 @@ $.extend( Buttons.prototype, {
 				conf._collection = $('<'+collectionDom.tag+'/>')
 					.addClass( collectionDom.className );
 
-				this._buildButtons( conf.buttons, conf._collection, i );
+				this._buildButtons( conf.buttons, conf._collection, buttonCounter );
 			}
 
 			// init call is made here, rather than buildButton as it needs to
@@ -525,6 +526,8 @@ $.extend( Buttons.prototype, {
 			if ( conf.init ) {
 				conf.init.call( dt.button( buttonNode ), dt, buttonNode, conf );
 			}
+			
+			buttonCounter++;
 		}
 	},
 
